@@ -3,10 +3,15 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
-   public void Jogar()
+   public void JogarMichael()
    {
         SceneManager.LoadScene(1);
    }
+
+    public void JogarLeon()
+    {
+        SceneManager.LoadScene(2);
+    }
 
    public void BotaoCreditos()
    {
