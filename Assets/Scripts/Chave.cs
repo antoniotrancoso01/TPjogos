@@ -2,33 +2,20 @@ using UnityEngine;
 
 public class Chave : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public string idChave; // Identificador da chave
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player")) // Supondo que o jogador tem a Tag "Player"
         {
-            Debug.Log("Chave coletada!");
-
-            // Avisa à porta que o jogador pegou a chave
-            Porta porta = FindObjectOfType<Porta>();
-            if (porta != null)
+            Debug.Log("Chave pega: " + idChave);
+            var inventario = other.GetComponent<PlayerInventario>();
+            if (inventario != null)
             {
-                porta.PegarChave();
+                inventario.AdicionarChave(idChave); // Adiciona a chave ao inventário
             }
-
-            // Desativa ou destrói a chave
-            gameObject.SetActive(false);
+            Destroy(gameObject); // Remove a chave do mundo
         }
     }
 }
+
