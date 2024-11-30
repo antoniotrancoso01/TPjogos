@@ -16,36 +16,51 @@ public class MovimentarJogador : MonoBehaviour
 
     private Vector3 vetorMovimento = new Vector3();
 
-    private CharacterController controladorPersonagem;
-
     public float efeitoGravidade = 1f;
 
     public float forcaSalto = 1f;
 
     public GameObject pauseMenuUI;
-    
+
     public static bool gameIsPaused = false;
 
     public AudioMixer audioMixer;
 
     public Slider volumeSlider;
 
+    public Camera playerCamera; // Referência à câmara do jogador
+
+    public CharacterController characterController; // Referência ao colisor do personagem
+
+    public float crouchHeight = 0.5f; // Altura do CharacterController ao agachar
+    public float crouchCameraOffset = 0.75f; // Ajuste no eixo Y ao agachar
+
+    private float originalHeight; // Altura original do CharacterController
+    private float originalCameraY; // Posição original da câmara
+    private Vector3 originalCenter; // Centro original do CharacterController
+
+    private bool isCrouching = false; // Estado de agachamento
+
+    private CharacterController controladorPersonagem;
 
     void Start()
     {
         controladorPersonagem = gameObject.GetComponent<CharacterController>();
 
-        //Carregar sensibilidade guardada pelo "PlayerPrefs"
+        // Carregar sensibilidade e volume guardados pelo "PlayerPrefs"
         sensibilidadeX = PlayerPrefs.GetFloat("MouseSensitivity", sensibilidadeX);
         sensibilidadeY = sensibilidadeX; // Usamos o mesmo valor para ambas as direções
-
         volumeSlider.value = PlayerPrefs.GetFloat("Volume", 0f);
 
+        // Inicializa os valores originais
+        originalHeight = characterController.height;
+        originalCenter = characterController.center;
+        originalCameraY = playerCamera.transform.localPosition.y; // Guarda a posição inicial da câmara
     }
 
     void Update()
     {
-        //Verificar se o jogador clicou ESC para pausar/despausar o jogo
+        // Verificar se o jogador clicou ESC para pausar/despausar o jogo
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (gameIsPaused)
@@ -58,15 +73,14 @@ public class MovimentarJogador : MonoBehaviour
             }
         }
 
-        //Se o jogo estiver pausado, não lê os movimentos
+        // Se o jogo estiver pausado, não lê os movimentos
         if (gameIsPaused) return;
 
-
-        //Atualizar a sensibilidade em tempo real, caso tenha sido alterada
+        // Atualizar a sensibilidade em tempo real, caso tenha sido alterada
         sensibilidadeX = PlayerPrefs.GetFloat("MouseSensitivity", sensibilidadeX);
         sensibilidadeY = sensibilidadeX;
 
-
+        // Rotação da câmera com o rato
         ratoRotacaoX += Input.GetAxis("Mouse X") * sensibilidadeX;
         ratoRotacaoY += Input.GetAxis("Mouse Y") * sensibilidadeY;
 
@@ -74,14 +88,14 @@ public class MovimentarJogador : MonoBehaviour
         ratoRotacaoY = Mathf.Clamp(ratoRotacaoY, -90, 90);
         objectoCamara.transform.localRotation = Quaternion.Euler(-1 * ratoRotacaoY, 0, 0);
 
-
+        // Movimentação do jogador
         if (Input.GetKey(KeyCode.W))
         {
             vetorMovimento.z = velocidadeMovimento;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            vetorMovimento.z = -1 * velocidadeMovimento;
+            vetorMovimento.z = -velocidadeMovimento;
         }
         if (Input.GetKey(KeyCode.D))
         {
@@ -89,15 +103,28 @@ public class MovimentarJogador : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.A))
         {
-            vetorMovimento.x = -1 * velocidadeMovimento;
+            vetorMovimento.x = -velocidadeMovimento;
         }
 
-        vetorMovimento = gameObject.transform.forward * vetorMovimento.z +
-                         gameObject.transform.right * vetorMovimento.x +
-                         gameObject.transform.up * vetorMovimento.y;
+        // Agachamento (Crouch)
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            if (isCrouching)
+            {
+                Levantar(); // Volta ao estado normal
+            }
+            else
+            {
+                Agachar(); // Agacha o personagem
+            }
+        }
+
+        // Aplica movimentação e gravidade
+        vetorMovimento = transform.TransformDirection(vetorMovimento);
 
         if (controladorPersonagem.isGrounded)
         {
+            vetorMovimento.y = -1f; // Para manter o jogador preso ao chão
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 vetorMovimento.y = forcaSalto;
@@ -105,33 +132,64 @@ public class MovimentarJogador : MonoBehaviour
         }
         else
         {
-            vetorMovimento += Physics.gravity * efeitoGravidade * Time.deltaTime;
+            vetorMovimento.y += Physics.gravity.y * efeitoGravidade * Time.deltaTime;
         }
 
         controladorPersonagem.Move(vetorMovimento * Time.deltaTime);
 
+        // Resetar os movimentos no eixo X e Z após aplicação
         vetorMovimento.x = 0;
         vetorMovimento.z = 0;
     }
 
-    //Método para voltar ao jogo
+    void Agachar()
+    {
+        isCrouching = true;
+
+        // Define altura reduzida e ajusta o centro
+        characterController.height = crouchHeight;
+        characterController.center = new Vector3(originalCenter.x, crouchHeight / 2, originalCenter.z);
+
+        // Ajusta a câmera para a nova posição
+        AdjustCameraY(-crouchCameraOffset);
+    }
+
+    void Levantar()
+    {
+        isCrouching = false;
+
+        // Volta à altura original e restaura o centro
+        characterController.height = originalHeight;
+        characterController.center = originalCenter;
+
+        // Retorna a câmera para a posição inicial
+        AdjustCameraY(crouchCameraOffset);
+    }
+
+    void AdjustCameraY(float offset)
+    {
+        Vector3 cameraPosition = playerCamera.transform.localPosition;
+        cameraPosition.y = originalCameraY + offset; // Ajusta a posição vertical da câmera
+        playerCamera.transform.localPosition = cameraPosition;
+    }
+
+    // Método para voltar ao jogo
     public void ResumeGame()
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         gameIsPaused = false;
-        Cursor.lockState = CursorLockMode.Locked; //Trancar o rato 
-        Cursor.visible = false; //Esconder o rato
+        Cursor.lockState = CursorLockMode.Locked; // Trancar o rato
+        Cursor.visible = false; // Esconder o rato
     }
 
-    //Método para pausar o jogo
+    // Método para pausar o jogo
     public void PauseGame()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         gameIsPaused = true;
-        Cursor.lockState = CursorLockMode.None; //Libertar o rato
-        Cursor.visible = true; //Tornar o rato visível
+        Cursor.lockState = CursorLockMode.None; // Libertar o rato
+        Cursor.visible = true; // Tornar o rato visível
     }
-
 }

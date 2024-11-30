@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 
 public class shotgun : MonoBehaviour
 {
@@ -14,7 +16,7 @@ public class shotgun : MonoBehaviour
     public int balasReserva = 30; // Total de balas disponíveis para recarga
     public float tempoRecarga = 2f; // Tempo necessário para recarregar
     public bool aRecarregar = false; //bool para fazer no natal
-    public Text balasUI;
+    public TextMeshProUGUI balasUI;
     void Start()
     {
         cam = Camera.main;
@@ -89,12 +91,12 @@ public class shotgun : MonoBehaviour
 
     void ApplyDamage(RaycastHit hit)
     {
-        //Vida vidaScript = hit.collider.GetComponent<Vida>();
+        Vida vidaScript = hit.collider.GetComponent<Vida>();
 
-        //if (vidaScript != null)
-        //{
-        //    vidaScript.ReceberDano(10); // Aplica 10 de dano ao objeto atingido
-        //}
+        if (vidaScript != null)
+        {
+           vidaScript.ReceberDano(10); // Aplica 10 de dano ao objeto atingido
+        }
     }
     System.Collections.IEnumerator Recarregar()
     {
