@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Cena1Leon.unity
     guid: f989e4d0f451e40478973007da162bfb
   - enabled: 1
-    path: Assets/Scenes/SceneMina.unity
+    path: Assets/Scenes/SceneMina2.unity
     guid: ce2b646383f64c7468c1e19261532841
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
