@@ -17,6 +17,11 @@ public class shotgun : MonoBehaviour
     public float tempoRecarga = 2f; // Tempo necessário para recarregar
     public bool aRecarregar = false; //bool para fazer no natal
     public TextMeshProUGUI balasUI;
+
+    public AudioSource audioSource;
+    public AudioClip disparoClip;  //Som do disparo
+    public AudioClip reloadClip; //Som de reload
+
     void Start()
     {
         cam = Camera.main;
@@ -26,7 +31,12 @@ public class shotgun : MonoBehaviour
 
     void Update()
     {
+        //Não processa inputs se o jogo está pausado ou se o cursor está visível
+        if (PauseMenu.gameIsPaused || Cursor.lockState != CursorLockMode.Locked)
+            return;
+
         AtualizarUI();
+
         if (Input.GetKeyDown(KeyCode.Mouse0) && !aRecarregar)
         {
             if (balasAtuais > 0)
@@ -39,6 +49,7 @@ public class shotgun : MonoBehaviour
         {
             animator.SetBool("disparar", false);
         }
+
         if (Input.GetKeyDown(KeyCode.R) && !aRecarregar && balasAtuais < maxBalas && balasReserva > 0)
         {
             StartCoroutine(Recarregar());
@@ -86,6 +97,7 @@ public class shotgun : MonoBehaviour
             GameObject impactInstance = Instantiate(impact, hit4.point, Quaternion.LookRotation(hit4.normal));
             Destroy(impactInstance, 2f);
             ApplyDamage(hit4);
+            audioSource.PlayOneShot(disparoClip);
         }
     }
 
@@ -98,9 +110,9 @@ public class shotgun : MonoBehaviour
            vidaScript.ReceberDano(10); // Aplica 10 de dano ao objeto atingido
         }
     }
+
     System.Collections.IEnumerator Recarregar()
     {
-
         aRecarregar = true;
         Debug.Log("A recarregar...");
         animator.SetTrigger("primeiroreload"); // Aciona a animação de recarga, se houver
@@ -113,6 +125,7 @@ public class shotgun : MonoBehaviour
             balasAtuais++;
             balasReserva--;
             AtualizarUI();
+            audioSource.PlayOneShot(reloadClip);
             yield return new WaitForSeconds(0.5f);
         }
         animator.SetBool("recarregar", false);
