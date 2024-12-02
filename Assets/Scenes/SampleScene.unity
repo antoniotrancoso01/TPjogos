@@ -33517,7 +33517,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.9, z: 0}
+  m_Center: {x: 0, y: 1.11, z: 0}
 --- !u!114 &812470002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33531,7 +33531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 1185496657}
-  speed: 50
+  speed: 25
 --- !u!54 &812470003
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -48966,6 +48966,7 @@ GameObject:
   - component: {fileID: 1185496660}
   - component: {fileID: 1185496659}
   - component: {fileID: 1185496661}
+  - component: {fileID: 1185496662}
   m_Layer: 0
   m_Name: Jogador
   m_TagString: Player
@@ -49029,7 +49030,8 @@ MonoBehaviour:
   sensibilidadeX: 2
   sensibilidadeY: 2
   objectoCamara: {fileID: 324425995}
-  velocidadeMovimento: 25
+  velocidadeMovimento: 10
+  velocidadeCorrida: 20
   efeitoGravidade: 2
   forcaSalto: 10
   pauseMenuUI: {fileID: 1476300933}
@@ -49039,6 +49041,8 @@ MonoBehaviour:
   characterController: {fileID: 1185496656}
   crouchHeight: 1
   crouchCameraOffset: 0.5
+  dashDistance: 5
+  dashSpeed: 15
 --- !u!114 &1185496659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49083,6 +49087,43 @@ MonoBehaviour:
   aimTransitionSpeed: 5
   isAiming: 0
   isShooting: 0
+--- !u!114 &1185496662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185496655}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a457976bae8ff44469dc2d014a0605b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSpeed: 0
+  sprintSpeed: 0
+  dashSpeed: 0
+  dashSpeedChangeFactor: 0
+  maxYSpeed: 0
+  groundDrag: 0
+  jumpForce: 0
+  jumpCooldown: 0
+  airMultiplier: 0
+  crouchSpeed: 0
+  crouchYScale: 0
+  jumpKey: 32
+  sprintKey: 304
+  crouchKey: 306
+  playerHeight: 2
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 1
+  maxSlopeAngle: 0
+  orientation: {fileID: 0}
+  state: 0
+  dashing: 0
+  text_speed: {fileID: 0}
+  text_ySpeed: {fileID: 0}
+  text_mode: {fileID: 0}
 --- !u!4 &1185755514 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 961741979798854093, guid: 7de6beed731593645aea22da4adce52e, type: 3}

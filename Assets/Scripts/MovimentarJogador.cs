@@ -13,6 +13,7 @@ public class MovimentarJogador : MonoBehaviour
     private float ratoRotacaoY = 0;
 
     public float velocidadeMovimento = 1f;
+         public float velocidadeCorrida = 2f; // Velocidade ao correr
 
     private Vector3 vetorMovimento = new Vector3();
 
@@ -42,6 +43,11 @@ public class MovimentarJogador : MonoBehaviour
     private bool isCrouching = false; // Estado de agachamento
 
     private CharacterController controladorPersonagem;
+    // Variáveis para o dash
+    public float dashDistance = 5f; // Distância do dash
+    public float dashSpeed = 15f; // Velocidade do dash
+    private bool isDashing = false; // Estado de dash
+    private Vector3 dashDirection; // Direção do dash
 
     void Start()
     {
@@ -88,24 +94,33 @@ public class MovimentarJogador : MonoBehaviour
         ratoRotacaoY = Mathf.Clamp(ratoRotacaoY, -90, 90);
         objectoCamara.transform.localRotation = Quaternion.Euler(-1 * ratoRotacaoY, 0, 0);
 
+
+        // Determinar a velocidade de movimento (normal ou corrida)
+        float velocidadeAtual = Input.GetKey(KeyCode.LeftShift) ? velocidadeCorrida : velocidadeMovimento;
+
         // Movimentação do jogador
         if (Input.GetKey(KeyCode.W))
         {
-            vetorMovimento.z = velocidadeMovimento;
+            vetorMovimento.z = velocidadeAtual;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            vetorMovimento.z = -velocidadeMovimento;
+            vetorMovimento.z = -velocidadeAtual;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            vetorMovimento.x = velocidadeMovimento;
+            vetorMovimento.x = velocidadeAtual;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            vetorMovimento.x = -velocidadeMovimento;
+            vetorMovimento.x = -velocidadeAtual;
         }
-
+    
+        // Dash
+        if (Input.GetKeyDown(KeyCode.Q) && !isDashing)
+        {
+            StartDash();
+        }
         // Agachamento (Crouch)
         if (Input.GetKeyDown(KeyCode.C))
         {
@@ -192,4 +207,29 @@ public class MovimentarJogador : MonoBehaviour
         Cursor.lockState = CursorLockMode.None; // Libertar o rato
         Cursor.visible = true; // Tornar o rato visível
     }
+    void StartDash()
+    {
+        isDashing = true;
+        dashDirection = transform.forward; // Define a direção do dash
+        StartCoroutine(PerformDash());
+    }
+
+    System.Collections.IEnumerator PerformDash()
+    {
+        float distanceCovered = 0f;
+
+        while (distanceCovered < dashDistance)
+        {
+            float dashStep = dashSpeed * Time.deltaTime;
+            distanceCovered += dashStep;
+
+            Vector3 dashMove = dashDirection * dashStep;
+            controladorPersonagem.Move(dashMove);
+
+            yield return null; // Espera pelo próximo frame
+        }
+
+        isDashing = false; // Termina o dash
+    }
+
 }
