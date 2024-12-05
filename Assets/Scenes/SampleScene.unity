@@ -14531,7 +14531,46 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 49a9eb60c42c0a246b5fa2cd7cf2f9c6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 812470002}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 49a9eb60c42c0a246b5fa2cd7cf2f9c6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 812470004}
+    - targetCorrespondingSourceObject: {fileID: 2715566404302941441, guid: 49a9eb60c42c0a246b5fa2cd7cf2f9c6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 352599880}
   m_SourcePrefab: {fileID: 100100000, guid: 49a9eb60c42c0a246b5fa2cd7cf2f9c6, type: 3}
+--- !u!95 &352599878 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 49a9eb60c42c0a246b5fa2cd7cf2f9c6, type: 3}
+  m_PrefabInstance: {fileID: 352599877}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &352599879 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2715566404302941441, guid: 49a9eb60c42c0a246b5fa2cd7cf2f9c6, type: 3}
+  m_PrefabInstance: {fileID: 352599877}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &352599880
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352599879}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.23314348
+  m_Height: 1.0000001
+  m_Direction: 1
+  m_Center: {x: 0.07, y: -0.13, z: -0.05}
 --- !u!4 &353211741 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4425155702340450573, guid: f12845bb4d1709a499e97026b8068627, type: 3}
@@ -33530,8 +33569,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a155924882168145b75bbdeeecd6e38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Anim: {fileID: 352599878}
   Target: {fileID: 1185496657}
   speed: 25
+  detectionRange: 3
 --- !u!54 &812470003
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -33557,8 +33598,20 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &812470004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812469997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5b5ccbe15ae19c488e879e023a3f76a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &813510453
 GameObject:
   m_ObjectHideFlags: 0
