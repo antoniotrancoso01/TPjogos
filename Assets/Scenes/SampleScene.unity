@@ -3822,10 +3822,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be696abaab141fd4dab4b7bc7992c92d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portaAnimator: {fileID: 87145077}
-  uiManager: {fileID: 675206031}
-  mensagemSemChave: "A chave est\xE1 na planta\xE7\xE3o !"
-  idChave: ChaveCeleiro
+  portaAnimator: {fileID: 0}
+  uiManager: {fileID: 0}
+  mensagemSemChave: "Voc\xEA precisa da chave correta!"
+  idChave: 
 --- !u!65 &87145079
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14531,9 +14531,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 49a9eb60c42c0a246b5fa2cd7cf2f9c6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 812470002}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 49a9eb60c42c0a246b5fa2cd7cf2f9c6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 812470004}
     - targetCorrespondingSourceObject: {fileID: 2715566404302941441, guid: 49a9eb60c42c0a246b5fa2cd7cf2f9c6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 352599880}
+    - targetCorrespondingSourceObject: {fileID: 2715566404302941441, guid: 49a9eb60c42c0a246b5fa2cd7cf2f9c6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 352599881}
   m_SourcePrefab: {fileID: 100100000, guid: 49a9eb60c42c0a246b5fa2cd7cf2f9c6, type: 3}
 --- !u!95 &352599878 stripped
 Animator:
@@ -14560,7 +14566,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -14568,6 +14574,20 @@ CapsuleCollider:
   m_Height: 1.0000001
   m_Direction: 1
   m_Center: {x: 0.07, y: -0.13, z: -0.05}
+--- !u!114 &352599881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352599879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 944c135b3afa10a4984de2c0de5e4e92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dano: 10
+  intervaloDeDano: 1
 --- !u!4 &353211741 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4425155702340450573, guid: f12845bb4d1709a499e97026b8068627, type: 3}
@@ -33595,8 +33615,22 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &812470004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812469997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 944c135b3afa10a4984de2c0de5e4e92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dano: 10
+  intervaloDeDano: 1
 --- !u!1 &813510453
 GameObject:
   m_ObjectHideFlags: 0
@@ -43602,31 +43636,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ee1359076689fb429e33ad9b17c5484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FencePoints:
-  - {x: 458.02304, y: 0, z: 259.82468}
-  - {x: 459.4638, y: 0, z: 260.00104}
-  - {x: 461.7766, y: 0, z: 260.06848}
-  - {x: 463.6838, y: 0, z: 259.86774}
-  - {x: 640.0223, y: 0, z: 257.92523}
-  - {x: 644.9976, y: 0, z: 267.36386}
-  - {x: 644.85944, y: 0, z: 434.66476}
-  - {x: 642.4543, y: 0, z: 541.86896}
-  - {x: 626.19415, y: 0, z: 559.9561}
-  - {x: 603.63806, y: 0, z: 570.8052}
-  - {x: 549.1526, y: 0, z: 579.68976}
-  - {x: 458.63193, y: 0, z: 579.27924}
-  - {x: 341.75742, y: 0, z: 576.34515}
-  - {x: 293.1415, y: 0, z: 529.70966}
-  - {x: 276.22604, y: 0, z: 451.54507}
-  - {x: 284.47833, y: 0, z: 359.87903}
-  - {x: 301.41205, y: 0, z: 283.43555}
-  - {x: 451.18585, y: 0, z: 259.26407}
+  FencePoints: []
   FencePrefabs:
-  - {fileID: 961741979798854093, guid: 7de6beed731593645aea22da4adce52e, type: 3}
-  PostPrefab: {fileID: 4394781789903108621, guid: b20f9d78f58cfbd4d874f230761ab0b0, type: 3}
-  FenceEndOffset: {x: 0, y: 0, z: 1.25}
-  FenceRotation: 4.41
-  FenceLength: 2.5
+  - {fileID: 0}
+  PostPrefab: {fileID: 0}
+  FenceEndOffset: {x: 0, y: 0, z: 0}
+  FenceRotation: 0
+  FenceLength: 2
   FenceScale: {x: 1, y: 1, z: 1}
   CompleteLoop: 0
   ObjectMode: 0
@@ -49000,11 +49016,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1185496657}
   - component: {fileID: 1185496656}
-  - component: {fileID: 1185496658}
   - component: {fileID: 1185496660}
   - component: {fileID: 1185496659}
   - component: {fileID: 1185496661}
   - component: {fileID: 1185496662}
+  - component: {fileID: 1185496663}
+  - component: {fileID: 1185496664}
   m_Layer: 0
   m_Name: Jogador
   m_TagString: Player
@@ -49053,34 +49070,6 @@ Transform:
   - {fileID: 324425996}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -397.03, z: 0}
---- !u!114 &1185496658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1185496655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f94eb4f8f8dfc049a58b59cbeb8a6ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sensibilidadeX: 2
-  sensibilidadeY: 2
-  objectoCamara: {fileID: 324425995}
-  velocidadeMovimento: 10
-  velocidadeCorrida: 20
-  efeitoGravidade: 2
-  forcaSalto: 10
-  pauseMenuUI: {fileID: 1476300933}
-  audioMixer: {fileID: 24100000, guid: 6ae800e1326b4c14f80005640c779d73, type: 2}
-  volumeSlider: {fileID: 738630153}
-  playerCamera: {fileID: 324425999}
-  characterController: {fileID: 1185496656}
-  crouchHeight: 1
-  crouchCameraOffset: 0.5
-  dashDistance: 5
-  dashSpeed: 15
 --- !u!114 &1185496659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49162,6 +49151,48 @@ MonoBehaviour:
   text_speed: {fileID: 0}
   text_ySpeed: {fileID: 0}
   text_mode: {fileID: 0}
+--- !u!114 &1185496663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185496655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad2ae5dee6b862c46a954846b494a281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vidaInicial: 100
+  fazerRespawn: 0
+--- !u!114 &1185496664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185496655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f94eb4f8f8dfc049a58b59cbeb8a6ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensibilidadeX: 5
+  sensibilidadeY: 5
+  objectoCamara: {fileID: 324425995}
+  velocidadeMovimento: 1
+  velocidadeCorrida: 2
+  efeitoGravidade: 1
+  forcaSalto: 1
+  pauseMenuUI: {fileID: 1476300933}
+  audioMixer: {fileID: 24100000, guid: 6ae800e1326b4c14f80005640c779d73, type: 2}
+  volumeSlider: {fileID: 738630153}
+  playerCamera: {fileID: 324425999}
+  characterController: {fileID: 1185496656}
+  crouchHeight: 0.5
+  crouchCameraOffset: 0.75
+  dashDistance: 5
+  dashSpeed: 15
 --- !u!4 &1185755514 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 961741979798854093, guid: 7de6beed731593645aea22da4adce52e, type: 3}
@@ -79388,10 +79419,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be696abaab141fd4dab4b7bc7992c92d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portaAnimator: {fileID: 1968649664}
-  uiManager: {fileID: 675206031}
-  mensagemSemChave: Vai buscar a chave ao celeiro!
-  idChave: ChaveCasa
+  portaAnimator: {fileID: 0}
+  uiManager: {fileID: 0}
+  mensagemSemChave: "Voc\xEA precisa da chave correta!"
+  idChave: 
 --- !u!65 &1968649666
 BoxCollider:
   m_ObjectHideFlags: 0
