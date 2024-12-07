@@ -31617,6 +31617,53 @@ Transform:
   - {fileID: 1905873096}
   m_Father: {fileID: 1309288773}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &751619956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 751619958}
+  - component: {fileID: 751619957}
+  m_Layer: 0
+  m_Name: spawnzombie
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &751619957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751619956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f326d9562cdaaf846bd485f4676966ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zombieTemplate: {fileID: 812469997}
+  maxZombies: 10
+  spawnInterval: 2
+--- !u!4 &751619958
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751619956}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.25, y: 0.295, z: 8.109}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &751990379 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 961741979798854093, guid: 7de6beed731593645aea22da4adce52e, type: 3}
@@ -33549,6 +33596,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vidaInicial: 100
   fazerRespawn: 0
+  posicaoRespawn: {x: 0, y: 0, z: 0}
+  isZombie: 1
 --- !u!143 &812470001
 CharacterController:
   m_ObjectHideFlags: 0
@@ -49165,6 +49214,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vidaInicial: 100
   fazerRespawn: 0
+  posicaoRespawn: {x: 0, y: 0, z: 0}
+  isZombie: 0
 --- !u!114 &1185496664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49180,8 +49231,8 @@ MonoBehaviour:
   sensibilidadeX: 5
   sensibilidadeY: 5
   objectoCamara: {fileID: 324425995}
-  velocidadeMovimento: 1
-  velocidadeCorrida: 2
+  velocidadeMovimento: 5
+  velocidadeCorrida: 15
   efeitoGravidade: 1
   forcaSalto: 1
   pauseMenuUI: {fileID: 1476300933}
@@ -49192,7 +49243,7 @@ MonoBehaviour:
   crouchHeight: 0.5
   crouchCameraOffset: 0.75
   dashDistance: 5
-  dashSpeed: 15
+  dashSpeed: 30
 --- !u!4 &1185755514 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 961741979798854093, guid: 7de6beed731593645aea22da4adce52e, type: 3}
@@ -86378,3 +86429,4 @@ SceneRoots:
   - {fileID: 415676470438270205}
   - {fileID: 7368574081137032368}
   - {fileID: 352599877}
+  - {fileID: 751619958}

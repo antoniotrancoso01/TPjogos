@@ -2,63 +2,93 @@ using UnityEngine;
 
 public class Vida : MonoBehaviour
 {
-    // Variável que guarda a vida inicial que o gameObject tem
-    public int vidaInicial = 100;
+    public int vidaInicial = 100;       // Vida inicial do GameObject
+    public bool fazerRespawn = false;  // Apenas para o jogador (ignorado pelos zombies)
+    public Vector3 posicaoRespawn;     // Apenas para o jogador (ignorado pelos zombies)
+    public bool isZombie = false;      // Identifica se o GameObject é um zombie
 
-    // Variável do tipo booleana que indica se o gameObject pode fazer respawn ou não
-    public bool fazerRespawn = true;
+    private int vidaAtual;             // Vida atual do GameObject
+    private Animator animator;         // Referência ao Animator (para zombies)
 
-    // Variável do tipo Vector3 que indica a posição onde irá fazer respawn
-    private Vector3 posicaoRespawn;
-
-    // Variável que guarda a vida que o jogador tem a cada momento
-    private int vidaAtual;
-
-    // Start is called before the first frame update
+    // Start é chamado antes do primeiro frame update
     void Start()
     {
-        // Quando o jogo iniciar, guarda na variável posicaoRespawn a posição atual do gameObject
-        posicaoRespawn = gameObject.transform.position;
-
-        // Quando o jogo iniciar, coloca a vidaAtual com o mesmo valor que a vidaInicial
         vidaAtual = vidaInicial;
-    }
 
-    // Função pública para receber dano de qualquer fonte (inclusive do ZombieDamage)
-    public void ReceberDano(int dano)
-    {
-        // Reduz a vida atual com base no dano recebido
-        vidaAtual -= dano;
-
-        Debug.Log($"{gameObject.name} recebeu {dano} de dano. Vida atual: {vidaAtual}");
-
-        // Verifica se a vida atual é inferior ou igual a 0
-        if (vidaAtual <= 0)
+        // Guarda a posição inicial como respawn apenas para o jogador
+        if (!isZombie)
         {
-            // Se o gameObject puder fazer respawn
-            if (fazerRespawn)
+            posicaoRespawn = transform.position;
+        }
+
+        // Obtém o Animator apenas se for um zombie
+        if (isZombie)
+        {
+            animator = GetComponent<Animator>();
+            if (animator == null)
             {
-                Respawn();
-            }
-            else
-            {
-                Morrer();
+                Debug.LogWarning($"{gameObject.name} não tem Animator associado.");
             }
         }
     }
 
-    // Lógica de respawn
+    // Função pública para receber dano
+    public void ReceberDano(int dano)
+    {
+        vidaAtual -= dano;
+        Debug.Log($"{gameObject.name} recebeu {dano} de dano. Vida atual: {vidaAtual}");
+
+        if (vidaAtual <= 0)
+        {
+            if (isZombie)
+            {
+                MorrerZombie(); // Lógica para zombies
+            }
+            else
+            {
+                MorrerJogador(); // Lógica para o jogador
+            }
+        }
+    }
+
+    // Lógica para "morte" de zombies
+    private void MorrerZombie()
+    {
+        if (animator != null)
+        {
+            animator.SetTrigger("isMorto"); // Ativa a animação de morte
+        }
+
+        Debug.Log($"{gameObject.name} morreu e desaparecerá em 30 segundos.");
+        Invoke(nameof(Desaparecer), 30f); // Remove o zombie após 30 segundos
+    }
+
+    // Lógica para "morte" do jogador
+    private void MorrerJogador()
+    {
+        if (fazerRespawn)
+        {
+            Respawn();
+        }
+        else
+        {
+            gameObject.SetActive(false); // Desativa o jogador
+            Debug.Log($"{gameObject.name} morreu e não fará respawn.");
+        }
+    }
+
+    // Lógica de respawn para o jogador
     private void Respawn()
     {
-        gameObject.transform.SetPositionAndRotation(posicaoRespawn, this.transform.rotation);
+        transform.SetPositionAndRotation(posicaoRespawn, Quaternion.identity);
         vidaAtual = vidaInicial; // Restaura a vida inicial
         Debug.Log($"{gameObject.name} fez respawn.");
     }
 
-    // Lógica para "morte" definitiva
-    public void Morrer()
+    // Lógica para desaparecer (usada pelos zombies)
+    private void Desaparecer()
     {
-        gameObject.SetActive(false); // Desativa o objeto
-        Debug.Log($"{gameObject.name} morreu.");
+        Destroy(gameObject); // Remove o zombie da cena
+        Debug.Log($"{gameObject.name} foi destruído.");
     }
 }
