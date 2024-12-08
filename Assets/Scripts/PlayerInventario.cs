@@ -1,19 +1,51 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
+using TMPro;
 
 public class PlayerInventario : MonoBehaviour
 {
-    private HashSet<string> chavesColetadas = new HashSet<string>(); // Armazena as chaves coletadas
+    public int totalChaves = 3; // Total de chaves necessárias
+    private int chavesColetadas = 0; // Contador de chaves coletadas
+    public TextMeshProUGUI textoObjetivo; // Referência ao texto "Apanhar chaves X/4"
+    public GameObject tickObjetivo01; // Referência ao objeto "Tick" do objetivo 1
 
-    // Adiciona uma chave ao inventário
-    public void AdicionarChave(string idChave)
+    private HashSet<string> inventarioChaves = new HashSet<string>();
+
+    private void Start()
     {
-        chavesColetadas.Add(idChave);
+        AtualizarTextoObjetivo();
+        if (tickObjetivo01 != null)
+        {
+            tickObjetivo01.SetActive(false); // Certifique-se de que o "Tick" está desativado no início
+        }
     }
 
-    // Verifica se o jogador tem a chave com o identificador específico
+    public void AdicionarChave(string idChave)
+    {
+        inventarioChaves.Add(idChave);
+        chavesColetadas++; // Incrementa o número de chaves coletadas
+        AtualizarTextoObjetivo();
+
+        // Verifica se o jogador coletou 3 chaves e ativa o Tick do objetivo 1
+        if (chavesColetadas >= 3 && tickObjetivo01 != null)
+        {
+            tickObjetivo01.SetActive(true);
+            Debug.Log("Objetivo 1 completo: Tick ativado!");
+        }
+
+        Debug.Log($"Chave {idChave} coletada! Total: {chavesColetadas}/{totalChaves}");
+    }
+
     public bool TemChave(string idChave)
     {
-        return chavesColetadas.Contains(idChave);
+        return inventarioChaves.Contains(idChave);
+    }
+
+    private void AtualizarTextoObjetivo()
+    {
+        if (textoObjetivo != null)
+        {
+            textoObjetivo.text = $"Apanhar chaves {chavesColetadas}/{totalChaves}";
+        }
     }
 }

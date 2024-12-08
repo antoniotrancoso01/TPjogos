@@ -6,7 +6,17 @@ public class ChavePorta : MonoBehaviour
     public MensagemManager uiManager; // Referência ao gerenciador de UI
     public string mensagemSemChave = "Você precisa da chave correta!";
     public string idChave; // Identificador da chave necessária
+    public bool ativaObjetivo2 = false; // Define se esta porta ativa o objetivo 2
+    public GameObject tickObjetivo02; // Referência ao objeto "Tick" do objetivo 2
     private bool estaAberta = false;
+
+    private void Start()
+    {
+        if (ativaObjetivo2 && tickObjetivo02 != null)
+        {
+            tickObjetivo02.SetActive(false); // Certifique-se de que o "Tick" está desativado no início
+        }
+    }
 
     private void OnTriggerStay(Collider other)
     {
@@ -22,7 +32,7 @@ public class ChavePorta : MonoBehaviour
             else if (inventario != null && !inventario.TemChave(idChave))
             {
                 Debug.Log("Mensagem: " + mensagemSemChave);
-                uiManager.MostrarMensagem(mensagemSemChave); // Mostra a mensagem na tela
+                uiManager.MostrarMensagem(mensagemSemChave);
             }
         }
     }
@@ -34,6 +44,13 @@ public class ChavePorta : MonoBehaviour
         if (portaAnimator != null)
         {
             portaAnimator.SetTrigger("Abrir");
+        }
+
+        // Ativa o Tick do objetivo 2 apenas se esta porta for a correta
+        if (ativaObjetivo2 && tickObjetivo02 != null)
+        {
+            tickObjetivo02.SetActive(true);
+            Debug.Log("Objetivo 2 completo: Tick ativado!");
         }
     }
 }
