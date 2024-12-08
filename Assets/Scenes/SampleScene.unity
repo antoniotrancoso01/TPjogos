@@ -3970,9 +3970,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 87145076}
-  - component: {fileID: 87145078}
   - component: {fileID: 87145077}
   - component: {fileID: 87145079}
+  - component: {fileID: 87145080}
   m_Layer: 0
   m_Name: Portas
   m_TagString: Untagged
@@ -4019,24 +4019,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &87145078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 87145075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be696abaab141fd4dab4b7bc7992c92d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  portaAnimator: {fileID: 87145077}
-  uiManager: {fileID: 675206031}
-  mensagemSemChave: "A chave est\xE1 na planta\xE7\xE3o !"
-  idChave: ChaveCeleiro
-  ativaObjetivo2: 0
-  tickObjetivo02: {fileID: 0}
 --- !u!65 &87145079
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4058,6 +4040,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 14.804814, y: 6.947896, z: 11.93009}
   m_Center: {x: 4.7474074, y: -2.6100001, z: -3.6631079}
+--- !u!114 &87145080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87145075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be696abaab141fd4dab4b7bc7992c92d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portaAnimator: {fileID: 87145077}
+  uiManager: {fileID: 675206031}
+  mensagemSemChave: "A chave do celeiro costuma estar na planta\xE7\xE3o"
+  idChave: ChaveCeleiro
+  ativaObjetivo2: 0
+  tickObjetivo02: {fileID: 0}
 --- !u!1 &87284115
 GameObject:
   m_ObjectHideFlags: 0
@@ -15656,7 +15656,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   portaAnimator: {fileID: 370130364}
   uiManager: {fileID: 675206031}
-  mensagemSemChave: "Vai buscar a caixa de ferramentas \xE0 garagem !"
+  mensagemSemChave: "Tenho de ir buscar as ferramentas \xE0 garagem !"
   idChave: ChaveQuarto
   ativaObjetivo2: 1
   tickObjetivo02: {fileID: 1015609441}
@@ -39658,7 +39658,7 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 1
+  m_enableVertexGradient: 0
   m_colorMode: 2
   m_fontColorGradient:
     topLeft: {r: 0.6037736, g: 0.03702387, b: 0.03702387, a: 1}
@@ -39674,8 +39674,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
-  m_fontSizeBase: 42
+  m_fontSize: 38
+  m_fontSizeBase: 38
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -39712,7 +39712,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -9.632019, w: 0}
+  m_margin: {x: 0, y: 0, z: -2.0870972, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -39742,8 +39742,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 236.62146, y: -367}
-  m_SizeDelta: {x: 385.2429, y: 50}
+  m_AnchoredPosition: {x: 307.54047, y: -367.96075}
+  m_SizeDelta: {x: 527.0808, y: 83.5312}
   m_Pivot: {x: 0.5, y: 0.49999997}
 --- !u!1001 &959738241
 PrefabInstance:
@@ -44550,31 +44550,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ee1359076689fb429e33ad9b17c5484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FencePoints:
-  - {x: 458.02304, y: 0, z: 259.82468}
-  - {x: 459.4638, y: 0, z: 260.00104}
-  - {x: 461.7766, y: 0, z: 260.06848}
-  - {x: 463.6838, y: 0, z: 259.86774}
-  - {x: 640.0223, y: 0, z: 257.92523}
-  - {x: 644.9976, y: 0, z: 267.36386}
-  - {x: 644.85944, y: 0, z: 434.66476}
-  - {x: 642.4543, y: 0, z: 541.86896}
-  - {x: 626.19415, y: 0, z: 559.9561}
-  - {x: 603.63806, y: 0, z: 570.8052}
-  - {x: 549.1526, y: 0, z: 579.68976}
-  - {x: 458.63193, y: 0, z: 579.27924}
-  - {x: 341.75742, y: 0, z: 576.34515}
-  - {x: 293.1415, y: 0, z: 529.70966}
-  - {x: 276.22604, y: 0, z: 451.54507}
-  - {x: 284.47833, y: 0, z: 359.87903}
-  - {x: 301.41205, y: 0, z: 283.43555}
-  - {x: 451.18585, y: 0, z: 259.26407}
+  FencePoints: []
   FencePrefabs:
-  - {fileID: 961741979798854093, guid: 7de6beed731593645aea22da4adce52e, type: 3}
-  PostPrefab: {fileID: 4394781789903108621, guid: b20f9d78f58cfbd4d874f230761ab0b0, type: 3}
-  FenceEndOffset: {x: 0, y: 0, z: 1.25}
-  FenceRotation: 4.41
-  FenceLength: 2.5
+  - {fileID: 0}
+  PostPrefab: {fileID: 0}
+  FenceEndOffset: {x: 0, y: 0, z: 0}
+  FenceRotation: 0
+  FenceLength: 2
   FenceScale: {x: 1, y: 1, z: 1}
   CompleteLoop: 0
   ObjectMode: 0
@@ -49983,7 +49965,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1.46, z: 0}
+  m_Center: {x: 0, y: 0.97, z: 0}
 --- !u!4 &1185496657
 Transform:
   m_ObjectHideFlags: 0
@@ -49993,8 +49975,8 @@ Transform:
   m_GameObject: {fileID: 1185496655}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.31755275, z: -0, w: -0.94824064}
-  m_LocalPosition: {x: 36.569, y: 0.609, z: -9.671}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -40.46, y: 0.609, z: -76.6}
+  m_LocalScale: {x: 1, y: 1.48, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 324425996}
@@ -50026,6 +50008,8 @@ MonoBehaviour:
   characterController: {fileID: 1185496656}
   crouchHeight: 1
   crouchCameraOffset: 0.5
+  proneHeight: 0.25
+  proneCameraOffset: 1.25
 --- !u!114 &1185496659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81115,7 +81099,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   portaAnimator: {fileID: 1968649664}
   uiManager: {fileID: 675206031}
-  mensagemSemChave: Vai buscar a chave ao celeiro!
+  mensagemSemChave: "A chave da casa est\xE1 no celeiro !"
   idChave: ChaveCasa
   ativaObjetivo2: 0
   tickObjetivo02: {fileID: 0}
