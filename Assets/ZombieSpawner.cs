@@ -1,8 +1,10 @@
 using UnityEngine;
 using System.Collections;
+
 public class ZombieSpawner : MonoBehaviour
 {
-    public GameObject zombieTemplate;  // O zombie existente na hierarquia
+    public GameObject zombieTemplate;  // O primeiro template de zombie
+    public GameObject zombieTemplate2; // O segundo template de zombie
     public int maxZombies = 10;        // Número máximo de zombies ativos ao mesmo tempo
     public float spawnInterval = 2f;  // Intervalo de spawn (em segundos)
 
@@ -17,15 +19,17 @@ public class ZombieSpawner : MonoBehaviour
     {
         while (true)
         {
-            if (activeZombies < maxZombies)
+            // Verifica se é possível spawnar mais zombies
+            if (activeZombies + 2 <= maxZombies) // Adiciona espaço para 2 zombies
             {
-                SpawnZombie();
+                SpawnZombie(zombieTemplate);
+                SpawnZombie(zombieTemplate2);
             }
             yield return new WaitForSeconds(spawnInterval);
         }
     }
 
-    void SpawnZombie()
+    void SpawnZombie(GameObject zombieTemplate)
     {
         if (zombieTemplate != null)
         {

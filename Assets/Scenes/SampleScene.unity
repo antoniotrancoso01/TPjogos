@@ -31647,6 +31647,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zombieTemplate: {fileID: 812469997}
+  zombieTemplate2: {fileID: 923379813}
   maxZombies: 10
   spawnInterval: 20
 --- !u!4 &751619958
@@ -36981,6 +36982,222 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7de6beed731593645aea22da4adce52e, type: 3}
+--- !u!1001 &923379812
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 737e4ecc2c0c518418918750225fc82c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 16.91
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 737e4ecc2c0c518418918750225fc82c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.304
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 737e4ecc2c0c518418918750225fc82c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 737e4ecc2c0c518418918750225fc82c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 737e4ecc2c0c518418918750225fc82c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 737e4ecc2c0c518418918750225fc82c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 737e4ecc2c0c518418918750225fc82c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 737e4ecc2c0c518418918750225fc82c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 737e4ecc2c0c518418918750225fc82c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 737e4ecc2c0c518418918750225fc82c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 737e4ecc2c0c518418918750225fc82c, type: 3}
+      propertyPath: m_Name
+      value: Warzombie F Pedroso
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 737e4ecc2c0c518418918750225fc82c, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2ef8e6599b7f9934e8ff0d64c5325a1f, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 737e4ecc2c0c518418918750225fc82c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 923379818}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 737e4ecc2c0c518418918750225fc82c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 923379817}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 737e4ecc2c0c518418918750225fc82c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 923379816}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 737e4ecc2c0c518418918750225fc82c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 923379820}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 737e4ecc2c0c518418918750225fc82c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 923379822}
+    - targetCorrespondingSourceObject: {fileID: -290750445479886849, guid: 737e4ecc2c0c518418918750225fc82c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 923379819}
+  m_SourcePrefab: {fileID: 100100000, guid: 737e4ecc2c0c518418918750225fc82c, type: 3}
+--- !u!1 &923379813 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 737e4ecc2c0c518418918750225fc82c, type: 3}
+  m_PrefabInstance: {fileID: 923379812}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &923379814 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 737e4ecc2c0c518418918750225fc82c, type: 3}
+  m_PrefabInstance: {fileID: 923379812}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &923379815 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -290750445479886849, guid: 737e4ecc2c0c518418918750225fc82c, type: 3}
+  m_PrefabInstance: {fileID: 923379812}
+  m_PrefabAsset: {fileID: 0}
+--- !u!143 &923379816
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923379813}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.42
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1.07, z: 0}
+--- !u!114 &923379817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923379813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a155924882168145b75bbdeeecd6e38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Anim: {fileID: 923379814}
+  Target: {fileID: 1185496657}
+  speed: 2
+  detectionRange: 1
+--- !u!114 &923379818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923379813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 944c135b3afa10a4984de2c0de5e4e92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dano: 10
+  intervaloDeDano: 1
+--- !u!136 &923379819
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923379815}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1080478
+  m_Height: 1.0000001
+  m_Direction: 1
+  m_Center: {x: 0.06, y: 0.03, z: 0.01}
+--- !u!114 &923379820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923379813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad2ae5dee6b862c46a954846b494a281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vidaInicial: 50
+  fazerRespawn: 0
+  posicaoRespawn: {x: 0, y: 0, z: 0}
+  isZombie: 1
+  caixaDeMunicaoPrefab: {fileID: 1414839618}
+--- !u!54 &923379822
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923379813}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &924185851
 GameObject:
   m_ObjectHideFlags: 0
@@ -86525,3 +86742,4 @@ SceneRoots:
   - {fileID: 352599877}
   - {fileID: 751619958}
   - {fileID: 1414839617}
+  - {fileID: 923379812}
