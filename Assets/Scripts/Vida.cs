@@ -10,6 +10,7 @@ public class Vida : MonoBehaviour
     private int vidaAtual;             // Vida atual do GameObject
     private Animator animator;         // Referência ao Animator (para zombies)
 
+    public GameObject caixaDeMunicaoPrefab;
     // Start é chamado antes do primeiro frame update
     void Start()
     {
@@ -54,11 +55,13 @@ public class Vida : MonoBehaviour
     // Lógica para "morte" de zombies
     private void MorrerZombie()
     {
+        DroparMunicao();
+
         if (animator != null)
         {
             animator.SetTrigger("isMorto"); // Ativa a animação de morte
         }
-
+        DisableZombieBehavior();
         Debug.Log($"{gameObject.name} morreu e desaparecerá em 30 segundos.");
         Invoke(nameof(Desaparecer), 30f); // Remove o zombie após 30 segundos
     }
@@ -91,4 +94,35 @@ public class Vida : MonoBehaviour
         Destroy(gameObject); // Remove o zombie da cena
         Debug.Log($"{gameObject.name} foi destruído.");
     }
+    private void DisableZombieBehavior()
+    {
+        var seguirJogador = GetComponent<seguirOplayer>();
+        if (seguirJogador != null)
+        {
+            seguirJogador.enabled = false;  // Desativa o script
+        }
+
+        var zombieAttack = GetComponent<zombiedamage>();
+        if (zombieAttack != null)
+        {
+            zombieAttack.enabled = false; // Desativa ataques do zombie
+        }
+
+        var collider = GetComponent<Collider>();
+        if (collider != null)
+        {
+            collider.enabled = false; // Opcional: desativa colisões físicas
+        }
+    }
+    private void DroparMunicao()
+    {
+        if (caixaDeMunicaoPrefab != null)
+        {
+            // Cria a munição na posição do zombie
+            Vector3 posicaoDrop = transform.position + new Vector3(0, 0.5f, 0); // Desloca 0.5 no eixo Y
+            Instantiate(caixaDeMunicaoPrefab, posicaoDrop, Quaternion.identity);
+            Debug.Log("Munição dropada.");
+        }
+    }
+
 }
