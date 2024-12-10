@@ -1,28 +1,35 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Vida : MonoBehaviour
 {
-    public int vidaInicial = 100;       // Vida inicial do GameObject
-    public bool fazerRespawn = false;  // Apenas para o jogador (ignorado pelos zombies)
-    public Vector3 posicaoRespawn;     // Apenas para o jogador (ignorado pelos zombies)
-    public bool isZombie = false;      // Identifica se o GameObject é um zombie
+    public int vidaInicial = 100;          // Vida inicial do jogador
+    public int coleteInicial = 100;       // Colete inicial do jogador
+    public bool fazerRespawn = false;     // Se o jogador pode fazer respawn
+    public Vector3 posicaoRespawn;        // Posição de respawn do jogador
+    public bool isZombie = false;         // Identifica se é um zombie
 
-    private int vidaAtual;             // Vida atual do GameObject
-    private Animator animator;         // Referência ao Animator (para zombies)
+    private int vidaAtual;                // Vida atual
+    private int coleteAtual;              // Colete atual
+    private Animator animator;            // Apenas para zombies
 
     public GameObject caixaDeMunicaoPrefab;
-    // Start é chamado antes do primeiro frame update
+
+    // Referências para a UI
+    public TextMeshProUGUI vidaTexto;
+    public TextMeshProUGUI coleteTexto;
+
     void Start()
     {
         vidaAtual = vidaInicial;
+        coleteAtual = coleteInicial;
 
-        // Guarda a posição inicial como respawn apenas para o jogador
         if (!isZombie)
         {
             posicaoRespawn = transform.position;
         }
 
-        // Obtém o Animator apenas se for um zombie
         if (isZombie)
         {
             animator = GetComponent<Animator>();
@@ -31,42 +38,71 @@ public class Vida : MonoBehaviour
                 Debug.LogWarning($"{gameObject.name} não tem Animator associado.");
             }
         }
+
+        AtualizarUI();
     }
 
     // Função pública para receber dano
     public void ReceberDano(int dano)
     {
-        vidaAtual -= dano;
-        Debug.Log($"{gameObject.name} recebeu {dano} de dano. Vida atual: {vidaAtual}");
+        if (coleteAtual > 0)
+        {
+            int danoRestante = dano - coleteAtual;
+            coleteAtual = Mathf.Max(0, coleteAtual - dano);
+
+            if (danoRestante > 0)
+            {
+                vidaAtual = Mathf.Max(0, vidaAtual - danoRestante);
+            }
+        }
+        else
+        {
+            vidaAtual = Mathf.Max(0, vidaAtual - dano);
+        }
+
+        Debug.Log($"{gameObject.name} recebeu {dano} de dano. Vida atual: {vidaAtual}, Colete atual: {coleteAtual}");
+
+        AtualizarUI();
 
         if (vidaAtual <= 0)
         {
             if (isZombie)
             {
-                MorrerZombie(); // Lógica para zombies
+                MorrerZombie();
             }
             else
             {
-                MorrerJogador(); // Lógica para o jogador
+                MorrerJogador();
             }
         }
     }
 
-    // Lógica para "morte" de zombies
+    // Atualiza a UI
+    private void AtualizarUI()
+    {
+        if (vidaTexto != null)
+        {
+            vidaTexto.text = $"{vidaAtual}";
+        }
+
+        if (coleteTexto != null)
+        {
+            coleteTexto.text = $"{coleteAtual}";
+        }
+    }
+
     private void MorrerZombie()
     {
         DroparMunicao();
 
         if (animator != null)
         {
-            animator.SetTrigger("isMorto"); // Ativa a animação de morte
+            animator.SetTrigger("isMorto");
         }
         DisableZombieBehavior();
-        Debug.Log($"{gameObject.name} morreu e desaparecerá em 30 segundos.");
-        Invoke(nameof(Desaparecer), 30f); // Remove o zombie após 30 segundos
+        Invoke(nameof(Desaparecer), 30f);
     }
 
-    // Lógica para "morte" do jogador
     private void MorrerJogador()
     {
         if (fazerRespawn)
@@ -75,54 +111,52 @@ public class Vida : MonoBehaviour
         }
         else
         {
-            gameObject.SetActive(false); // Desativa o jogador
+            gameObject.SetActive(false);
             Debug.Log($"{gameObject.name} morreu e não fará respawn.");
         }
     }
 
-    // Lógica de respawn para o jogador
     private void Respawn()
     {
         transform.SetPositionAndRotation(posicaoRespawn, Quaternion.identity);
-        vidaAtual = vidaInicial; // Restaura a vida inicial
+        vidaAtual = vidaInicial;
+        coleteAtual = coleteInicial;
+        AtualizarUI();
         Debug.Log($"{gameObject.name} fez respawn.");
     }
 
-    // Lógica para desaparecer (usada pelos zombies)
     private void Desaparecer()
     {
-        Destroy(gameObject); // Remove o zombie da cena
-        Debug.Log($"{gameObject.name} foi destruído.");
+        Destroy(gameObject);
     }
+
     private void DisableZombieBehavior()
     {
         var seguirJogador = GetComponent<seguirOplayer>();
         if (seguirJogador != null)
         {
-            seguirJogador.enabled = false;  // Desativa o script
+            seguirJogador.enabled = false;
         }
 
         var zombieAttack = GetComponent<zombiedamage>();
         if (zombieAttack != null)
         {
-            zombieAttack.enabled = false; // Desativa ataques do zombie
+            zombieAttack.enabled = false;
         }
 
         var collider = GetComponent<Collider>();
         if (collider != null)
         {
-            collider.enabled = false; // Opcional: desativa colisões físicas
+            collider.enabled = false;
         }
     }
+
     private void DroparMunicao()
     {
         if (caixaDeMunicaoPrefab != null)
         {
-            // Cria a munição na posição do zombie
-            Vector3 posicaoDrop = transform.position + new Vector3(0, 0.5f, 0); // Desloca 0.5 no eixo Y
+            Vector3 posicaoDrop = transform.position + new Vector3(0, 0.5f, 0);
             Instantiate(caixaDeMunicaoPrefab, posicaoDrop, Quaternion.identity);
-            Debug.Log("Munição dropada.");
         }
     }
-
 }
