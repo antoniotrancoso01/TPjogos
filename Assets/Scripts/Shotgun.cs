@@ -148,4 +148,11 @@ public class shotgun : MonoBehaviour
             balasUI.text = $"Balas: {balasAtuais}/{maxBalas} | Reserva: {balasReserva}";
         }
     }
+    public void AdicionarMunicao(int quantidade)
+    {
+        balasReserva += quantidade;
+        AtualizarUI(); // Atualiza a interface
+        Debug.Log($"Municação adicionada! Balas na reserva: {balasReserva}");
+    }
 }
+

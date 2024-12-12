@@ -7,6 +7,7 @@ public class ZombieSpawner : MonoBehaviour
     public GameObject zombieTemplate2; // O segundo template de zombie
     public int maxZombies = 10;        // Número máximo de zombies ativos ao mesmo tempo
     public float spawnInterval = 2f;  // Intervalo de spawn (em segundos)
+    public float spawnRadius = 3f;    // Raio da área onde os zombies podem spawnar
 
     private int activeZombies = 0;    // Contador de zombies ativos
 
@@ -33,8 +34,18 @@ public class ZombieSpawner : MonoBehaviour
     {
         if (zombieTemplate != null)
         {
-            // Clona o zombieTemplate
-            GameObject newZombie = Instantiate(zombieTemplate, transform.position, Quaternion.identity);
+            // Adiciona uma posição aleatória dentro de um círculo
+            Vector3 randomOffset = new Vector3(
+                Random.Range(-spawnRadius, spawnRadius),
+                0,
+                Random.Range(-spawnRadius, spawnRadius)
+            );
+
+            // Define a nova posição de spawn
+            Vector3 spawnPosition = transform.position + randomOffset;
+
+            // Clona o zombieTemplate na nova posição
+            GameObject newZombie = Instantiate(zombieTemplate, spawnPosition, Quaternion.identity);
 
             // Garante que o clone está ativo e visível
             newZombie.SetActive(true);
