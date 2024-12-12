@@ -56,7 +56,7 @@ public class Vida : MonoBehaviour
     private void MorrerZombie()
     {
         DroparMunicao();
-
+        FindObjectOfType<HordaController>().ZombieEliminado();
         if (animator != null)
         {
             animator.SetTrigger("isMorto"); // Ativa a animação de morte

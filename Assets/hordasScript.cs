@@ -1,53 +1,99 @@
-using System.Collections;
+using TMPro;
 using UnityEngine;
 
-public class hordasScript : MonoBehaviour
+public class HordaController : MonoBehaviour
 {
-    public Transform[] spawnPoints;      // Array de pontos de spawn
-    public GameObject zombiePrefab;      // Prefab do zombie
-    public int zombiesIniciais = 5;      // Número inicial de zombies na primeira horda
-    public float intervaloEntreHordas = 10f; // Tempo entre hordas (em segundos)
-    public float intervaloEntreSpawns = 0.5f; // Tempo entre spawns de zombies na mesma horda
-    public float fatorCrescimento = 1.5f; // Multiplicador para aumentar a quantidade de zombies
+    public TextMeshProUGUI hordaUI;       // Texto para mostrar o número da horda
+    public TextMeshProUGUI zombiesUI;    // Texto para mostrar zombies restantes
+    public TextMeshProUGUI mortosUI;
+  
 
-    private int numeroHorda = 0;         // Contador da horda atual
-    private int zombiesPorHorda;         // Quantidade de zombies na horda atual
+    public ZombieSpawner[] spawners; // Array de Spawners
+    public int zombiesIniciais = 5;  // Número inicial de zombies na primeira horda
+    public float intervaloHorda = 10f; // Tempo entre hordas (em segundos)
+    public float fatorAumento = 1.5f;  // Fator pelo qual os zombies aumentam a cada horda
+    private int pontosTotais = 0;
+    private int zombiesRestantes = 0;
+    private int numeroHorda = 1;      // Número atual da horda
+    private int zombiesPorHorda;     // Zombies a spawnar nesta horda
+    private bool hordaAtiva = false; // Controla se a horda está em andamento
 
     void Start()
     {
-        zombiesPorHorda = zombiesIniciais; // Configura os zombies da primeira horda
-        StartCoroutine(GerirHordas());
+        pontosTotais = 0;
+        zombiesPorHorda = zombiesIniciais;
+        IniciarHorda();
     }
 
-    IEnumerator GerirHordas()
+    void IniciarHorda()
     {
-        while (true) // Hordas infinitas
+        Debug.Log($"Iniciando Horda {numeroHorda} com {zombiesPorHorda} zombies!");
+        hordaAtiva = true;
+        // Reseta o contador de zombies mortos
+        zombiesMortos = 0;
+        //zombiesRestantes = zombiesPorHorda;
+        zombiesRestantes = 0; // Reseta o contador de zombies restantes
+
+        // Divide os zombies entre os spawners e ajusta o total de zombies
+        int zombiesPorSpawner = Mathf.CeilToInt((float)zombiesPorHorda / spawners.Length);
+        foreach (var spawner in spawners)
         {
-            numeroHorda++;
-            Debug.Log($"Horda {numeroHorda} está a começar com {zombiesPorHorda} zombies!");
-            StartCoroutine(SpawnHorda(zombiesPorHorda));
+            spawner.IniciarSpawn(zombiesPorSpawner);
+            zombiesRestantes += zombiesPorSpawner; // Soma os zombies spawnados por este spawner
+        }
 
-            // Aguarda até a próxima horda
-            yield return new WaitForSeconds(intervaloEntreHordas);
+        // Atualiza os textos do UI
+        AtualizarUI();
+    }
 
-            // Aumenta a quantidade de zombies para a próxima horda
-            zombiesPorHorda = Mathf.CeilToInt(zombiesPorHorda * fatorCrescimento);
+    void FinalizarHorda()
+    {
+        Debug.Log($"Horda {numeroHorda} finalizada!");
+        hordaAtiva = false;
+
+        // Incrementa o número da horda
+        numeroHorda++;
+
+        // Aumenta o número de zombies para a próxima horda
+        zombiesPorHorda = Mathf.RoundToInt(zombiesPorHorda * fatorAumento);
+
+        // Inicia a próxima horda após um intervalo
+        Invoke(nameof(IniciarHorda), intervaloHorda);
+    }
+    private int zombiesMortos = 0; // Contador de zombies mortos na horda atual
+
+    public void ZombieEliminado()
+    {
+        zombiesMortos++;
+        pontosTotais=pontosTotais+100;
+        zombiesRestantes--;
+        Debug.Log($"Zombie eliminado! Total eliminados nesta horda: {zombiesMortos}");
+
+        // Atualiza os textos do UI
+        AtualizarUI();
+
+        // Verifica se todos os zombies da horda atual foram eliminados
+        //if (zombiesMortos >= zombiesPorHorda)
+        //{
+        //    Debug.Log("Todos os zombies desta horda foram eliminados!");
+        //    FinalizarHorda();
+        //}
+        if (zombiesRestantes==0)
+        {
+            Debug.Log("Todos os zombies desta horda foram eliminados!");
+            FinalizarHorda();
         }
     }
-
-    IEnumerator SpawnHorda(int quantidade)
+    void AtualizarUI()
     {
-        for (int i = 0; i < quantidade; i++)
-        {
-            // Escolhe um spawn point aleatório
-            Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        if (hordaUI != null)
+            hordaUI.text = $"Horda: {numeroHorda}";
 
-            // Instancia o zombie
-            Instantiate(zombiePrefab, spawnPoint.position, spawnPoint.rotation);
+        if (zombiesUI != null)
+            zombiesUI.text = $"Zombies Restantes: {zombiesRestantes}";
 
-            // Espera um intervalo antes de spawnar o próximo zombie
-            yield return new WaitForSeconds(intervaloEntreSpawns);
-        }
+        if (mortosUI != null)
+            mortosUI.text = $"Pontoaçao total: {pontosTotais}";
     }
+
 }
-
