@@ -8262,6 +8262,142 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 629181904}
   m_CullTransparentMesh: 1
+--- !u!1001 &632291411
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 91011c5f0d3af6546a8a2d41780592b9, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 91011c5f0d3af6546a8a2d41780592b9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 91011c5f0d3af6546a8a2d41780592b9, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 91011c5f0d3af6546a8a2d41780592b9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 57.393677
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 91011c5f0d3af6546a8a2d41780592b9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.814
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 91011c5f0d3af6546a8a2d41780592b9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 53.800083
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 91011c5f0d3af6546a8a2d41780592b9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 91011c5f0d3af6546a8a2d41780592b9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 91011c5f0d3af6546a8a2d41780592b9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 91011c5f0d3af6546a8a2d41780592b9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 91011c5f0d3af6546a8a2d41780592b9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 91011c5f0d3af6546a8a2d41780592b9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 91011c5f0d3af6546a8a2d41780592b9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 91011c5f0d3af6546a8a2d41780592b9, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: db08cdeadf63a804d99a882f45f2ae1e, type: 2}
+    - target: {fileID: 919132149155446097, guid: 91011c5f0d3af6546a8a2d41780592b9, type: 3}
+      propertyPath: m_Name
+      value: 10mmAmmoBox_done_01
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 91011c5f0d3af6546a8a2d41780592b9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 632291414}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 91011c5f0d3af6546a8a2d41780592b9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 632291413}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 91011c5f0d3af6546a8a2d41780592b9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 632291418}
+  m_SourcePrefab: {fileID: 100100000, guid: 91011c5f0d3af6546a8a2d41780592b9, type: 3}
+--- !u!1 &632291412 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 91011c5f0d3af6546a8a2d41780592b9, type: 3}
+  m_PrefabInstance: {fileID: 632291411}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &632291413
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632291412}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.7362952, y: 1.7364222, z: 0.4924755}
+  m_Center: {x: -0.0424781, y: 0.23651585, z: 0.2458592}
+--- !u!114 &632291414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632291412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c16109767c0770a49871537884c7a3e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidadeRotacao: 50
+  amplitudeFlutuacao: 0.5
+  velocidadeFlutuacao: 2
+--- !u!114 &632291418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632291412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ffdaa353a95af947b6ac17662b9ca1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quantidadeMunicao: 10
 --- !u!1 &643323497
 GameObject:
   m_ObjectHideFlags: 0
@@ -10254,6 +10390,7 @@ MonoBehaviour:
   posicaoRespawn: {x: 0, y: 0, z: 0}
   isZombie: 1
   caixaDeMunicaoPrefab: {fileID: 1414839618}
+  caixaDeMunicaoPrefab2: {fileID: 632291412}
 --- !u!143 &812470001
 CharacterController:
   m_ObjectHideFlags: 0
@@ -11246,6 +11383,7 @@ MonoBehaviour:
   posicaoRespawn: {x: 0, y: 0, z: 0}
   isZombie: 1
   caixaDeMunicaoPrefab: {fileID: 1414839618}
+  caixaDeMunicaoPrefab2: {fileID: 632291412}
 --- !u!54 &923379822
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14726,6 +14864,7 @@ MonoBehaviour:
   posicaoRespawn: {x: 0, y: 0, z: 0}
   isZombie: 0
   caixaDeMunicaoPrefab: {fileID: 0}
+  caixaDeMunicaoPrefab2: {fileID: 0}
 --- !u!114 &1185496667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21470,7 +21609,7 @@ MonoBehaviour:
   bulletReserve: 36
   reloadTime: 1.5
   isReloading: 0
-  bulletsUI: {fileID: 0}
+  bulletsUI: {fileID: 263942934}
   audioSource: {fileID: 0}
   shootClip: {fileID: 0}
   reloadClip: {fileID: 0}
@@ -24631,3 +24770,4 @@ SceneRoots:
   - {fileID: 1423371202}
   - {fileID: 487112139}
   - {fileID: 372133385}
+  - {fileID: 632291411}

@@ -11,6 +11,7 @@ public class Vida : MonoBehaviour
     private Animator animator;         // Referência ao Animator (para zombies)
 
     public GameObject caixaDeMunicaoPrefab;
+    public GameObject caixaDeMunicaoPrefab2;
     // Start é chamado antes do primeiro frame update
     void Start()
     {
@@ -116,12 +117,24 @@ public class Vida : MonoBehaviour
     }
     private void DroparMunicao()
     {
-        if (caixaDeMunicaoPrefab != null)
+        if (caixaDeMunicaoPrefab != null && caixaDeMunicaoPrefab2 != null)
         {
-            // Cria a munição na posição do zombie
-            Vector3 posicaoDrop = transform.position + new Vector3(0, 0.5f, 0); // Desloca 0.5 no eixo Y
-            Instantiate(caixaDeMunicaoPrefab, posicaoDrop, Quaternion.identity);
-            Debug.Log("Munição dropada.");
+            // Gera uma posição ligeiramente acima do zombie
+            Vector3 posicaoDrop = transform.position + new Vector3(0, 0.5f, 0);
+
+            // Decide aleatoriamente qual munição spawnar
+            if (Random.value < 0.5f) // 50% de chance
+            {
+                // Dropa o primeiro tipo de munição
+                Instantiate(caixaDeMunicaoPrefab, posicaoDrop, Quaternion.identity);
+                Debug.Log("Tipo 1 de munição dropado.");
+            }
+            else
+            {
+                Quaternion rotacaoDrop = Quaternion.Euler(-90,0, 0); // Rotação de -90 no eixo Y
+                Instantiate(caixaDeMunicaoPrefab2, posicaoDrop + new Vector3(0, 0.3f, 0), rotacaoDrop);
+                Debug.Log("Tipo 2 de munição dropado com rotação.");
+            }
         }
     }
 
