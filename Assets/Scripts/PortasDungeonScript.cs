@@ -11,6 +11,14 @@ public class PortasDungeonScript : MonoBehaviour
 
     private bool estaAberta = false;
 
+
+
+    public bool portaFazSpawn = false; // Define se esta porta deve fazer spawn do zumbi
+    public GameObject zombiePrefab; // Prefab do zumbi
+    public Transform spawnPoint;    // Local onde o zumbi será instanciado
+    public static bool zumbiSpawnado = false; // Flag global para verificar o spawn
+
+
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E))
@@ -56,6 +64,18 @@ public class PortasDungeonScript : MonoBehaviour
             npcAnimator.SetBool("IsWalking", true); // Ativa o parâmetro "IsWalking"
         }
 
+        // Fazer spawn do zumbi se esta porta for uma das específicas e o zumbi ainda não foi spawnado
+        if (portaFazSpawn && !zumbiSpawnado)
+        {
+            zumbiSpawnado = true; // Marca que o zumbi já foi spawnado
+            if (zombiePrefab != null && spawnPoint != null)
+            {
+                Instantiate(zombiePrefab, spawnPoint.position, spawnPoint.rotation);
+                Debug.Log("Zumbi instanciado pela porta: " + gameObject.name);
+            }
+        }
+
         Debug.Log("Porta aberta!");
     }
+
 }
