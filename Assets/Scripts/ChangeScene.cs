@@ -22,7 +22,7 @@ public class ChangeScene : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.E))
             {
-                SceneManager.LoadScene(3);
+                SceneManager.LoadScene(4);
             }
         }
     }

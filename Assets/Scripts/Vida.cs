@@ -111,10 +111,23 @@ public class Vida : MonoBehaviour
         }
         else
         {
-            gameObject.SetActive(false);
             Debug.Log($"{gameObject.name} morreu e não fará respawn.");
+            // Pausar o jogo
+            Time.timeScale = 0f;
+
+            // Exibe a tela de morte
+            var deathScreenManager = FindObjectOfType<DeathScreenManager>();
+            if (deathScreenManager != null)
+            {
+                deathScreenManager.ShowDeathScreen();
+            }
+            else
+            {
+                Debug.LogError("DeathScreenManager não encontrado!");
+            }
         }
     }
+
 
     private void Respawn()
     {
