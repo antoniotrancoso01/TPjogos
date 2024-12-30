@@ -5,12 +5,12 @@ public class MenuController : MonoBehaviour
 {
    public void JogarMichael()
    {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
    }
 
     public void JogarLeon()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
 
    public void BotaoCreditos()
