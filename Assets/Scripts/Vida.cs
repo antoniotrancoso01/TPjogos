@@ -1,14 +1,15 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Vida : MonoBehaviour
 {
     public int vidaInicial = 100;          // Vida inicial do jogador
     public int coleteInicial = 100;       // Colete inicial do jogador
+    public int vidaMaxima = 100;          // Vida máxima
+    public int coleteMaximo = 100;        // Colete máximo
     public bool fazerRespawn = false;     // Se o jogador pode fazer respawn
-    public Vector3 posicaoRespawn;        // Posi��o de respawn do jogador
-    public bool isZombie = false;         // Identifica se � um zombie
+    public Vector3 posicaoRespawn;        // Posição de respawn do jogador
+    public bool isZombie = false;         // Identifica se é um zombie
 
     private int vidaAtual;                // Vida atual
     private int coleteAtual;              // Colete atual
@@ -16,9 +17,8 @@ public class Vida : MonoBehaviour
 
     public GameObject caixaDeMunicaoPrefab;
     public GameObject caixaDeMunicaoPrefab2;
-    // Start � chamado antes do primeiro frame update
 
-    // Refer�ncias para a UI
+    // Referências para a UI
     public TextMeshProUGUI vidaTexto;
     public TextMeshProUGUI coleteTexto;
 
@@ -37,14 +37,14 @@ public class Vida : MonoBehaviour
             animator = GetComponent<Animator>();
             if (animator == null)
             {
-                Debug.LogWarning($"{gameObject.name} n�o tem Animator associado.");
+                Debug.LogWarning($"{gameObject.name} não tem Animator associado.");
             }
         }
 
         AtualizarUI();
     }
 
-    // Fun��o p�blica para receber dano
+    // Função pública para receber dano
     public void ReceberDano(int dano)
     {
         if (coleteAtual > 0)
@@ -63,7 +63,6 @@ public class Vida : MonoBehaviour
         }
 
         Debug.Log($"{gameObject.name} recebeu {dano} de dano. Vida atual: {vidaAtual}, Colete atual: {coleteAtual}");
-
         AtualizarUI();
 
         if (vidaAtual <= 0)
@@ -77,6 +76,20 @@ public class Vida : MonoBehaviour
                 MorrerJogador();
             }
         }
+    }
+
+    // Função para aumentar a vida
+    public void AumentarVida(int quantidade)
+    {
+        vidaAtual = Mathf.Min(vidaMaxima, vidaAtual + quantidade);
+        AtualizarUI();
+    }
+
+    // Função para aumentar o colete
+    public void AumentarColete(int quantidade)
+    {
+        coleteAtual = Mathf.Min(coleteMaximo, coleteAtual + quantidade);
+        AtualizarUI();
     }
 
     // Atualiza a UI
@@ -113,7 +126,7 @@ public class Vida : MonoBehaviour
         }
         else
         {
-            Debug.Log($"{gameObject.name} morreu e n�o far� respawn.");
+            Debug.Log($"{gameObject.name} morreu e não fará respawn.");
             // Pausar o jogo
             Time.timeScale = 0f;
 
@@ -125,11 +138,10 @@ public class Vida : MonoBehaviour
             }
             else
             {
-                Debug.LogError("DeathScreenManager n�o encontrado!");
+                Debug.LogError("DeathScreenManager não encontrado!");
             }
         }
     }
-
 
     private void Respawn()
     {
@@ -170,21 +182,16 @@ public class Vida : MonoBehaviour
     {
         if (caixaDeMunicaoPrefab != null && caixaDeMunicaoPrefab2 != null)
         {
-            // Gera uma posi��o ligeiramente acima do zombie
             Vector3 posicaoDrop = transform.position + new Vector3(0, 0.5f, 0);
 
-            // Decide aleatoriamente qual muni��o spawnar
-            if (Random.value < 0.5f) // 50% de chance
+            if (Random.value < 0.5f)
             {
-                // Dropa o primeiro tipo de muni��o
                 Instantiate(caixaDeMunicaoPrefab, posicaoDrop, Quaternion.identity);
-                Debug.Log("Tipo 1 de muni��o dropado.");
             }
             else
             {
-                Quaternion rotacaoDrop = Quaternion.Euler(-90,0, 0); // Rota��o de -90 no eixo Y
+                Quaternion rotacaoDrop = Quaternion.Euler(-90, 0, 0);
                 Instantiate(caixaDeMunicaoPrefab2, posicaoDrop + new Vector3(0, 0.3f, 0), rotacaoDrop);
-                Debug.Log("Tipo 2 de muni��o dropado com rota��o.");
             }
         }
     }

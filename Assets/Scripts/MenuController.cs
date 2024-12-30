@@ -5,7 +5,7 @@ public class MenuController : MonoBehaviour
 {
    public void JogarMichael()
    {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(5);
    }
 
     public void JogarLeon()

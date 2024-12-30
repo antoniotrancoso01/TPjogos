@@ -11,13 +11,12 @@ public class PortasDungeonScript : MonoBehaviour
 
     private bool estaAberta = false;
 
+    public bool portaFazSpawn = false;   // Define se esta porta deve fazer spawn do zumbi comum
+    public GameObject zombiePrefab;     // Prefab do zumbi comum
+    public static bool zumbiSpawnado = false; // Flag global para verificar o spawn do zumbi comum
 
-
-    public bool portaFazSpawn = false; // Define se esta porta deve fazer spawn do zumbi
-    public GameObject zombiePrefab; // Prefab do zumbi
-    public Transform spawnPoint;    // Local onde o zumbi será instanciado
-    public static bool zumbiSpawnado = false; // Flag global para verificar o spawn
-
+    // Referência ao boss zumbi na hierarquia
+    public GameObject zombieBoss; // Objeto do chefe zumbi que está desativado na hierarquia
 
     private void OnTriggerStay(Collider other)
     {
@@ -64,18 +63,24 @@ public class PortasDungeonScript : MonoBehaviour
             npcAnimator.SetBool("IsWalking", true); // Ativa o parâmetro "IsWalking"
         }
 
-        // Fazer spawn do zumbi se esta porta for uma das específicas e o zumbi ainda não foi spawnado
+        // Fazer spawn do zumbi comum se esta porta for específica
         if (portaFazSpawn && !zumbiSpawnado)
         {
             zumbiSpawnado = true; // Marca que o zumbi já foi spawnado
-            if (zombiePrefab != null && spawnPoint != null)
+            if (zombiePrefab != null)
             {
-                Instantiate(zombiePrefab, spawnPoint.position, spawnPoint.rotation);
-                Debug.Log("Zumbi instanciado pela porta: " + gameObject.name);
+                zombiePrefab.SetActive(true);
+                Debug.Log("Zumbi comum ativado pela porta: " + gameObject.name);
             }
+        }
+
+        // Ativar o chefe zumbi na hierarquia
+        if (zombieBoss != null && !zombieBoss.activeSelf)
+        {
+            zombieBoss.SetActive(true);
+            Debug.Log("Chefe zumbi ativado!");
         }
 
         Debug.Log("Porta aberta!");
     }
-
 }
