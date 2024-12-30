@@ -93,7 +93,7 @@ public class HordaController : MonoBehaviour
             zombiesUI.text = $"Zombies Restantes: {zombiesRestantes}";
 
         if (mortosUI != null)
-            mortosUI.text = $"Pontoaçao total: {pontosTotais}";
+            mortosUI.text = $"Pontuaçao total: {pontosTotais}";
     }
 
 }
