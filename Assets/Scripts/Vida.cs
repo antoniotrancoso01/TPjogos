@@ -11,7 +11,7 @@ public class Vida : MonoBehaviour
     public Vector3 posicaoRespawn;        // Posição de respawn do jogador
     public bool isZombie = false;         // Identifica se é um zombie
 
-    private int vidaAtual;                // Vida atual
+    public int vidaAtual;                // Vida atual
     private int coleteAtual;              // Colete atual
     private Animator animator;            // Apenas para zombies
 

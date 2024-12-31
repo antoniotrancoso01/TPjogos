@@ -9252,15 +9252,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 91011c5f0d3af6546a8a2d41780592b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 57.393677
+      value: 410
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 91011c5f0d3af6546a8a2d41780592b9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.814
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 91011c5f0d3af6546a8a2d41780592b9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 53.800083
+      value: 413
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 91011c5f0d3af6546a8a2d41780592b9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11609,6 +11609,7 @@ MonoBehaviour:
   fazerRespawn: 0
   posicaoRespawn: {x: 0, y: 0, z: 0}
   isZombie: 1
+  vidaAtual: 0
   caixaDeMunicaoPrefab: {fileID: 1414839618}
   caixaDeMunicaoPrefab2: {fileID: 632291412}
   vidaTexto: {fileID: 0}
@@ -12646,6 +12647,7 @@ MonoBehaviour:
   fazerRespawn: 0
   posicaoRespawn: {x: 0, y: 0, z: 0}
   isZombie: 1
+  vidaAtual: 0
   caixaDeMunicaoPrefab: {fileID: 1414839618}
   caixaDeMunicaoPrefab2: {fileID: 632291412}
   vidaTexto: {fileID: 0}
@@ -16425,6 +16427,7 @@ MonoBehaviour:
   fazerRespawn: 0
   posicaoRespawn: {x: 0, y: 0, z: 0}
   isZombie: 0
+  vidaAtual: 0
   caixaDeMunicaoPrefab: {fileID: 0}
   caixaDeMunicaoPrefab2: {fileID: 0}
   vidaTexto: {fileID: 1579445607}
@@ -19567,7 +19570,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 149dcc3d705add24ab992ced0908b30c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 383
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 149dcc3d705add24ab992ced0908b30c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -19575,7 +19578,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 149dcc3d705add24ab992ced0908b30c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.188
+      value: 375
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 149dcc3d705add24ab992ced0908b30c, type: 3}
       propertyPath: m_LocalRotation.w
