@@ -7,15 +7,17 @@ public class EnemyHealthBar : MonoBehaviour
     public Transform spawnPoint;        // Ponto onde o slider será posicionado
     public Canvas canvas;               // Canvas onde o slider será colocado
     public int vidaMaxima = 100;        // Vida máxima do inimigo
-
+    public float health = 10f;
     private int vidaAtual;              // Vida atual do inimigo
     private GameObject currentSlider;   // Instância atual do slider
     private Slider slider;              // Referência ao componente Slider
 
     void Start()
     {
+       
         vidaAtual = vidaMaxima;         // Inicializa a vida do inimigo
         SpawnSlider();                  // Cria o slider no início
+        currentSlider.GetComponent<Slider>().maxValue = health;
     }
 
     void Update()
@@ -28,6 +30,7 @@ public class EnemyHealthBar : MonoBehaviour
 
             // Atualiza o valor do slider
             slider.value = (float)vidaAtual / vidaMaxima;
+            currentSlider.GetComponent<Slider>().value = health;
         }
     }
 
