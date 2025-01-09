@@ -3886,7 +3886,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -44.20349, y: 0, z: 0, w: -16.132736}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -12317,8 +12317,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vidaInicial: 200
   coleteInicial: 0
-  vidaMaxima: 100
-  coleteMaximo: 100
+  vidaMaxima: 0
+  coleteMaximo: 0
   fazerRespawn: 0
   posicaoRespawn: {x: 0, y: 0, z: 0}
   isZombie: 1
@@ -13302,8 +13302,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Anim: {fileID: 923379814}
   Target: {fileID: 1185496657}
-  speed: 200
-  detectionRange: 1
+  speed: 100
+  detectionRange: 3
 --- !u!114 &923379818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13353,10 +13353,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad2ae5dee6b862c46a954846b494a281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidaInicial: 200
+  vidaInicial: 120
   coleteInicial: 0
-  vidaMaxima: 100
-  coleteMaximo: 100
+  vidaMaxima: 0
+  coleteMaximo: 0
   fazerRespawn: 0
   posicaoRespawn: {x: 0, y: 0, z: 0}
   isZombie: 1
@@ -17059,10 +17059,10 @@ MonoBehaviour:
   sensibilidadeX: 2
   sensibilidadeY: 2
   objectoCamara: {fileID: 324425995}
-  velocidadeMovimento: 25
-  velocidadeCorrida: 2
+  velocidadeMovimento: 12
+  velocidadeCorrida: 17
   efeitoGravidade: 2
-  forcaSalto: 10
+  forcaSalto: 9
   pauseMenuUI: {fileID: 1476300933}
   audioMixer: {fileID: 24100000, guid: 6ae800e1326b4c14f80005640c779d73, type: 2}
   volumeSlider: {fileID: 738630153}
@@ -25487,9 +25487,9 @@ MonoBehaviour:
   reloadTime: 1.5
   isReloading: 0
   bulletsUI: {fileID: 263942934}
-  audioSource: {fileID: 0}
-  shootClip: {fileID: 0}
-  reloadClip: {fileID: 0}
+  audioSource: {fileID: 1115586772}
+  shootClip: {fileID: 8300000, guid: bec09c6b5c8b1224f89cdcf149cff3c3, type: 3}
+  reloadClip: {fileID: 8300000, guid: 657c1ef28169adf488151668f7fdc34d, type: 3}
 --- !u!1 &1714937838
 GameObject:
   m_ObjectHideFlags: 0

@@ -36999,10 +36999,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vidaInicial: 100
   coleteInicial: 100
+  vidaMaxima: 100
+  coleteMaximo: 100
   fazerRespawn: 1
   posicaoRespawn: {x: 0, y: 0, z: 0}
   isZombie: 0
+  vidaAtual: 0
   caixaDeMunicaoPrefab: {fileID: 0}
+  caixaDeMunicaoPrefab2: {fileID: 0}
   vidaTexto: {fileID: 511279661}
   coleteTexto: {fileID: 443702090}
 --- !u!114 &869463721
@@ -37020,10 +37024,10 @@ MonoBehaviour:
   sensibilidadeX: 2
   sensibilidadeY: 2
   objectoCamara: {fileID: 1494972412}
-  velocidadeMovimento: 25
-  velocidadeCorrida: 2
+  velocidadeMovimento: 12
+  velocidadeCorrida: 17
   efeitoGravidade: 2
-  forcaSalto: 10
+  forcaSalto: 9
   pauseMenuUI: {fileID: 1374544160}
   audioMixer: {fileID: 24100000, guid: 6ae800e1326b4c14f80005640c779d73, type: 2}
   volumeSlider: {fileID: 2807132}
@@ -37115,8 +37119,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 869463719}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.8186513, z: 0, w: -0.57429093}
-  m_LocalPosition: {x: 62.64, y: 0.071, z: -199.635}
+  m_LocalRotation: {x: -0, y: -0.21141005, z: 0, w: -0.9773975}
+  m_LocalPosition: {x: -39.665283, y: 0.13099986, z: -204.18849}
   m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -37126,7 +37130,7 @@ Transform:
   - {fileID: 986328513}
   - {fileID: 550644518}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -250.1, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -335.59, z: 0}
 --- !u!1 &869608496
 GameObject:
   m_ObjectHideFlags: 0
